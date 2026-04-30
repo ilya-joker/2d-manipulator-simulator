@@ -11,8 +11,8 @@ def main():
 
     x = float(input("Enter target x: "))
     y = float(input("Enter target y: "))
-
-    angles = find_angles(x, y, LINK_1_LENGTH, LINK_2_LENGTH)
+    elbow = input("Choose elbow mode: up/down: ")
+    angles = find_angles(x, y, LINK_1_LENGTH, LINK_2_LENGTH, elbow)
 
     if angles is None:
         print("Target is unreachable")
