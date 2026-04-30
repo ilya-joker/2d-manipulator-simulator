@@ -25,35 +25,36 @@ def draw_workspace(link_1_length, link_2_length):
 
         plt.gca().add_patch(inner_circle)
 
-def visualize_manipulator(first_point,second_point, link_1_length, link_2_length, target_point=None):
+def visualize_manipulator(first_point, second_point, link_1_length, link_2_length, target_point=None):
     x1, y1 = first_point
     x2, y2 = second_point
-    x1points = [0, x1]
-    y1points = [0, y1]
 
-    x2points = [x1, x2]
-    y2points = [y1, y2]
-
-    target_x, target_y = target_point
-
-    plt.figure() # Создает новое окно для графика
-    plt.plot(x1points, y1points, "o-r", linewidth=2, label="Link 1")  # Маркер меняет обозначения на точках. o - точки. : - пунктир. r - red
-    plt.plot(x2points, y2points, "o-b", linewidth=2, label="Link 2")
-    plt.plot(target_x, target_y, "H-g", label='Target',ms = 10)
-    plt.legend()
-    plt.plot(0, 0, 'ko')
-    plt.axhline(0, color="gray", linewidth=0.8) # Рисует горизонтальную ось y = 0
-    plt.axvline(0, color="gray", linewidth=0.8) # Рисует вертикальную ось x = 0
-    plt.grid(True) # Включает сетку
-    plt.axis("equal") # Делает одинаковым масштаб по x и по y
-    plt.title("2-Link Manipulator") # Ставит заголовок
-    plt.xlabel("X")
-    plt.ylabel("Y")
-    plt.text(0, 0, "Base")
-    plt.text(x1, y1, "Joint 1")
-    plt.text(x2, y2, "End")
-
+    plt.figure(figsize=(8, 8))
 
     draw_workspace(link_1_length, link_2_length)
-    plt.show()  # Показывает окно с графиком
-#draw_workspace(2,2)
+
+    plt.plot([0, x1], [0, y1], "o-r", label="Link 1")
+    plt.plot([x1, x2], [y1, y2], "o-b", label="Link 2")
+
+    if target_point is not None:
+        target_x, target_y = target_point
+        plt.plot(target_x, target_y, "go", label="Target")
+
+    plt.axhline(0)
+    plt.axvline(0)
+    plt.grid(True)
+
+    workspace_radius = link_1_length + link_2_length
+    margin = 1.0
+
+    plt.xlim(-workspace_radius - margin, workspace_radius + margin)
+    plt.ylim(-workspace_radius - margin, workspace_radius + margin)
+
+    ax = plt.gca()
+    ax.set_aspect("equal", adjustable="box")
+
+    plt.legend()
+    plt.title("2-Link Manipulator")
+    plt.xlabel("X")
+    plt.ylabel("Y")
+    plt.show()
