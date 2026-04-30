@@ -22,7 +22,12 @@ def main():
         second_point
     )
 
-    visualize_manipulator(first_point,second_point)
+    visualize_manipulator(
+        first_point,
+        second_point,
+        LINK_1_LENGTH,
+        LINK_2_LENGTH
+    )
 
 
 if __name__ == "__main__":

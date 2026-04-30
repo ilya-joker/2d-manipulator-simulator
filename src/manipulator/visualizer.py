@@ -1,6 +1,31 @@
 import matplotlib.pyplot as plt
 
-def visualize_manipulator(first_point,second_point,target_point=None):
+def draw_workspace(link_1_length, link_2_length):
+    outer_radius = link_1_length + link_2_length
+    inner_radius = abs(link_1_length - link_2_length)
+
+    outer_circle = plt.Circle(
+        (0, 0),
+        outer_radius,
+        fill=False,
+        linestyle="--",
+        label="Max reach"
+    )
+
+    plt.gca().add_patch(outer_circle)
+
+    if inner_radius > 0:
+        inner_circle = plt.Circle(
+            (0, 0),
+            inner_radius,
+            fill=False,
+            linestyle=":",
+            label="Min reach"
+        )
+
+        plt.gca().add_patch(inner_circle)
+
+def visualize_manipulator(first_point,second_point, link_1_length, link_2_length, target_point=None):
     x1, y1 = first_point
     x2, y2 = second_point
     x1points = [0, x1]
@@ -27,4 +52,8 @@ def visualize_manipulator(first_point,second_point,target_point=None):
     plt.text(0, 0, "Base")
     plt.text(x1, y1, "Joint 1")
     plt.text(x2, y2, "End")
-    plt.show() # Показывает окно с графиком
+
+
+    draw_workspace(link_1_length, link_2_length)
+    plt.show()  # Показывает окно с графиком
+#draw_workspace(2,2)

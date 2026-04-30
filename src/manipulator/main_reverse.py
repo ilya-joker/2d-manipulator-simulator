@@ -11,8 +11,17 @@ def main():
 
     x = float(input("Enter target x: "))
     y = float(input("Enter target y: "))
-    elbow = input("Choose elbow mode: up/down: ")
-    angles = find_angles(x, y, LINK_1_LENGTH, LINK_2_LENGTH, elbow)
+    elbow_input = input("Choose elbow mode [up/down] (default: up): ").strip().lower()
+
+    if elbow_input == "":
+        elbow = "up"
+    elif elbow_input in ["up", "down"]:
+        elbow = elbow_input
+    else:
+        print("Invalid elbow mode. Use 'up' or 'down'.")
+        return
+
+    angles = find_angles(x, y, LINK_1_LENGTH, LINK_2_LENGTH, elbow=elbow)
 
     if angles is None:
         print("Target is unreachable")
@@ -52,7 +61,12 @@ def main():
 
 
 
-    visualize_manipulator(first_point,second_point, target_point )
+    visualize_manipulator(first_point,
+                          second_point,
+                          LINK_1_LENGTH,
+                          LINK_2_LENGTH,
+                          target_point
+    )
 
 
 if __name__ == "__main__":
