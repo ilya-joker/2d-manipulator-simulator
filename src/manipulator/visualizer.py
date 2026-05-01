@@ -1,9 +1,10 @@
 import matplotlib.pyplot as plt
 
-def draw_workspace(link_1_length, link_2_length):
-    outer_radius = link_1_length + link_2_length
-    inner_radius = abs(link_1_length - link_2_length)
+from manipulator.math_utils import calculate_workspace_bounds
 
+
+def draw_workspace(link_1_length, link_2_length):
+    outer_radius, inner_radius = calculate_workspace_bounds(link_1_length, link_2_length)
     outer_circle = plt.Circle(
         (0, 0),
         outer_radius,
@@ -50,6 +51,8 @@ def visualize_manipulator(first_point, second_point, link_1_length, link_2_lengt
     plt.xlim(-workspace_radius - margin, workspace_radius + margin)
     plt.ylim(-workspace_radius - margin, workspace_radius + margin)
 
+    # Get current coordinate axes and keep equal scale on X and Y.
+    # This prevents workspace circles from looking like ellipses.
     ax = plt.gca()
     ax.set_aspect("equal", adjustable="box")
 

@@ -30,7 +30,10 @@ def distance(point_1, point_2):
     x2, y2 = point_2
     return math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
 
-
+def calculate_workspace_bounds(link_1_length,link_2_length):
+    outer_radius = link_1_length + link_2_length
+    inner_radius = abs(link_1_length - link_2_length)
+    return outer_radius, inner_radius
 
 
 
