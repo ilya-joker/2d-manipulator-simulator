@@ -1,26 +1,22 @@
-# def motion_links(initial_angle, target_angle, step):
-#     result = []
-#     for i in range(initial_angle,target_angle, step):
-#         result.append((i, min(i + step,target_angle)))
-#     return result
+def generate_angle_path(start_angle_1, start_angle_2, target_angle_1, target_angle_2, steps):
+    if not isinstance(steps, int):
+        raise TypeError("steps must be an integer")
 
+    if steps <= 0:
+        raise ValueError("steps must be greater than 0")
 
+    angle_step_1 = (target_angle_1-start_angle_1) / steps
+    angle_step_2 = (target_angle_2 - start_angle_2) / steps
 
-# def motion_links(initial_angle, target_angle, step):
-#     x_initial, y_initial = initial_angle
-#     x_target, y_target = target_angle
-#
-#     result_x = []
-#     result_y = []
-#     for i in range(x_initial,x_target, step):
-#         result_x.append(i)
-#
-#     for i in range(y_initial,y_target, step):
-#         result_y.append(i)
-#
-#     result = list(zip(result_x, result_y))
-#     return result
-#
-# print(motion_links((0,0), (1,1), 10))
+    angles_of_motion = []
 
-def motion_links(start_angle_1, start_angle_2, target_angle_1, target_angle_2, step):
+    for i in range(steps + 1):
+        new_angle_1 = start_angle_1 + angle_step_1 * i
+        new_angle_2 = start_angle_2 + angle_step_2 * i
+
+        angles_of_motion.append((new_angle_1, new_angle_2))
+
+    return angles_of_motion
+
+if __name__ == "__main__":
+    print(generate_angle_path(10, 20, 50, 100, 4))
