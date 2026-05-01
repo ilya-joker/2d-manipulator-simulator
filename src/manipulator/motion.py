@@ -17,6 +17,3 @@ def generate_angle_path(start_angle_1, start_angle_2, target_angle_1, target_ang
         angles_of_motion.append((new_angle_1, new_angle_2))
 
     return angles_of_motion
-
-if __name__ == "__main__":
-    print(generate_angle_path(10, 20, 50, 100, 4))
