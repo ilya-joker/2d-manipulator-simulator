@@ -1,8 +1,9 @@
 import math
 
-from config import LINK_1_LENGTH, LINK_2_LENGTH, DEFAULT_ANGLE_1, DEFAULT_ANGLE_2
+from config import LINK_1_LENGTH, LINK_2_LENGTH
 from manipulator.math_utils import distance
-from manipulator.visualizer import visualize_manipulator
+from manipulator.motion import generate_angle_path, generate_position_path
+from manipulator.visualizer import visualize_motion_path
 from forward_kinematics import first_link_end, second_link_end
 from printer import print_manipulator_state
 from inverse_kinematics import find_angles
@@ -59,15 +60,30 @@ def main():
     else:
         print("IK check: FAILED")
 
+    start_angle_1_deg = 0
+    start_angle_2_deg = 0
+    motion_steps = 5
 
-
-    visualize_manipulator(first_point,
-                          second_point,
-                          LINK_1_LENGTH,
-                          LINK_2_LENGTH,
-                          target_point
+    angle_path = generate_angle_path(
+        start_angle_1_deg=start_angle_1_deg,
+        start_angle_2_deg=start_angle_2_deg,
+        target_angle_1_deg=angle_1_link,
+        target_angle_2_deg=angle_2_link,
+        steps=motion_steps
     )
 
+    position_path = generate_position_path(
+        angle_path,
+        LINK_1_LENGTH,
+        LINK_2_LENGTH
+    )
+
+    visualize_motion_path(
+        position_path,
+        LINK_1_LENGTH,
+        LINK_2_LENGTH,
+        target_point
+    )
 
 if __name__ == "__main__":
     main()
