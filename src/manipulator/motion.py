@@ -41,11 +41,7 @@ def generate_position_path(angle_path_deg, link_1_length, link_2_length):
     return position_path
 
 
-angle_path = [
-        (0, 0),
-        (90, 0),
-    ]
 
 
-#print(generate_position_path(angle_path, 1,1))
+
 
