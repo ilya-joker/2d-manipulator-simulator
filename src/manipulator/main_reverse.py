@@ -1,6 +1,6 @@
 import math
 
-from manipulator.config import LINK_1_LENGTH, LINK_2_LENGTH
+from manipulator.config import LINK_1_LENGTH, LINK_2_LENGTH, DEFAULT_ANGLE_1, DEFAULT_ANGLE_2
 from manipulator.math_utils import distance
 from manipulator.motion import generate_angle_path, generate_position_path
 from manipulator.visualizer import animate_motion_path
@@ -60,8 +60,8 @@ def main():
     else:
         print("IK check: FAILED")
 
-    start_angle_1_deg = 0
-    start_angle_2_deg = 0
+    start_angle_1_deg = DEFAULT_ANGLE_1
+    start_angle_2_deg = DEFAULT_ANGLE_2
     motion_steps = 5
 
     angle_path = generate_angle_path(
