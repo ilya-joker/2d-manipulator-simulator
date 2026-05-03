@@ -3,7 +3,7 @@ import math
 from manipulator.config import LINK_1_LENGTH, LINK_2_LENGTH
 from manipulator.math_utils import distance
 from manipulator.motion import generate_angle_path, generate_position_path
-from manipulator.visualizer import visualize_motion_path
+from manipulator.visualizer import animate_motion_path
 from manipulator.forward_kinematics import first_link_end, second_link_end
 from manipulator.printer import print_manipulator_state
 from manipulator.inverse_kinematics import find_angles
@@ -78,11 +78,10 @@ def main():
         LINK_2_LENGTH
     )
 
-    visualize_motion_path(
-        position_path,
-        LINK_1_LENGTH,
-        LINK_2_LENGTH,
-        target_point
+    animate_motion_path(position_path,
+                        LINK_1_LENGTH,
+                        LINK_2_LENGTH,
+                        target_point
     )
 
 if __name__ == "__main__":
