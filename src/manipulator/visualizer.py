@@ -185,4 +185,5 @@ def animate_motion_path_func(position_path, link_1_length, link_2_length, target
 
 
     ani = FuncAnimation(fig, update, frames=len(position_path), interval=100)
+    ani.save("manipulator.gif", writer="pillow", fps=10)
     plt.show()
