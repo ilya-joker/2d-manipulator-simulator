@@ -57,13 +57,13 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
-**Forward kinematics demo** — shows the manipulator in its default position:
+**Forward kinematics** — shows the manipulator in its default position:
 ```bash
 cd src
 python -m manipulator.main
 ```
 
-**Inverse kinematics demo** — enter a target point and watch the manipulator animate to it:
+**Inverse kinematics** — enter a target point and watch the manipulator animate to it:
 ```bash
 cd src
 python -m manipulator.main_reverse

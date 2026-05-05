@@ -3,7 +3,24 @@ import math
 from manipulator.math_utils import  is_reachable
 
 
-def find_angles(x, y, link1, link2, elbow="down"): # Down is a default type. If you don't choose elbow -- taking down
+def find_angles(x, y, link1, link2, elbow="down"):
+    """
+    Calculate joint angles to reach target point (x, y).
+
+    Args:
+        x: Target x coordinate.
+        y: Target y coordinate.
+        link1: Length of the first link.
+        link2: Length of the second link.
+        elbow: Elbow mode, 'up' or 'down' (default: 'down').
+
+    Returns:
+        Tuple (angle_1_rad, angle_2_rad) if target is reachable.
+        None if target is unreachable.
+
+    Raises:
+        ValueError: If elbow is not 'up' or 'down'.
+    """
     if not is_reachable(x,y,link1,link2):
         return None
     else:
