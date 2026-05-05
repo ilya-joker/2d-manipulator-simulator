@@ -2,7 +2,7 @@ from manipulator.config import LINK_1_LENGTH, LINK_2_LENGTH, DEFAULT_ANGLE_1, DE
 from manipulator.math_utils import distance
 from manipulator.motion import generate_angle_path, generate_position_path
 from manipulator.robot import TwoLinkManipulator
-from manipulator.visualizer import animate_motion_path
+from manipulator.visualizer import animate_motion_path_func
 from manipulator.printer import print_manipulator_state
 
 
@@ -53,7 +53,7 @@ def main():
 
     start_angle_1_deg = DEFAULT_ANGLE_1
     start_angle_2_deg = DEFAULT_ANGLE_2
-    motion_steps = 5
+    motion_steps = 10
 
     angle_path = generate_angle_path(
         start_angle_1_deg=start_angle_1_deg,
@@ -69,7 +69,7 @@ def main():
         LINK_2_LENGTH
     )
 
-    animate_motion_path(position_path,
+    animate_motion_path_func(position_path,
                         LINK_1_LENGTH,
                         LINK_2_LENGTH,
                         target_point
